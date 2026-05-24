@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { uid, city, category, conditions } = req.body;
+    const { uid, city} = req.body;
 
     if (!uid) {
       return res.status(400).json({ ok: false, message: "Missing uid" });
@@ -21,9 +21,6 @@ export default async function handler(req, res) {
       { uid },
       {
         $set: {
-          city,
-          category,
-          conditions,
           updatedAt: new Date()
         }
       }
