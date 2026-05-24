@@ -8,8 +8,8 @@ export default async function handler(req, res) {
   try {
     const { uid } = req.body;
 
-    if (!uid) {
-      return res.status(400).json({ ok: false, message: "Missing uid" });
+    if (!uid || typeof uid !== "string") {
+      return res.status(400).json({ ok: false, message: "Invalid or missing uid" });
     }
 
     const client = new MongoClient(process.env.MONGODB_URI);
